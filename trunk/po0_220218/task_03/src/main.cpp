@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "Container.h"
+#include "Store.h"
 
 #include "IError.h"
 #include "IOError.h"
@@ -11,7 +11,7 @@
 
 int main()
 {
-    Container container;
+    Store container;
 
     IOError io1(IOError::Type::INPUT);
     IOError io2(IOError::Type::OUTPUT);
@@ -25,8 +25,8 @@ int main()
         std::cout << "Errors are different" << std::endl;
     }
 
-    container.Add(&io1);
-    container.Add(&io2);
+    container.insert(&io1);
+    container.insert(&io2);
 
     NotEnoughMemory nem1(NotEnoughMemory::MemoryType::VRAM);
     NotEnoughMemory nem2(NotEnoughMemory::MemoryType::VRAM);
@@ -41,8 +41,8 @@ int main()
     }
     nem2 = nem1;
 
-    container.Add(&nem1);
-    container.Add(&nem2);
+    container.insert(&nem1);
+    container.insert(&nem2);
 
     ReadFileError rfe1("CANNOT OPEN FILE");
     ReadFileError rfe2("CANNOT OPEN FILE");
@@ -56,11 +56,11 @@ int main()
         std::cout << "Erros are different" << std::endl;
     }
 
-    container.Add(&rfe1);
-    container.Add(&rfe2);
+    container.insert(&rfe1);
+    container.insert(&rfe2);
 
     std::cout << "Amount of erros: " << container.size() << std::endl;
-    container.ShowAll();
+    container.print();
 
     container[7]->Print();
 }
