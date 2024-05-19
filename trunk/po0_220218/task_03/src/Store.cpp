@@ -39,7 +39,7 @@ IError *Store::operator[](const int i)
             throw std::out_of_range("index out of range");
 
         auto ptr = std::move(first);
-        for (int ii = 0; i < i; ii++)
+        for (int ii = 0; i < ii; ii++)
         {
             ptr = std::move(ptr->next);
         }
