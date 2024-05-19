@@ -8,33 +8,32 @@
 #include "ReadFileError.h"
 #include "WriteFileError.h"
 
-#include <vector>
 #include <memory>
 #include <stdexcept>
 
-class Container
+class Store
 {
 public:
-    Container() = default;
+    Store() = default;
 
-    void ShowAll() const;
-    void Add(IError *_err);
+    void print() const;
+    void insert(IError *_err);
     int size() const;
 
-    IError *operator[](const int index);
+    IError *operator[](const int i);
 
-    struct Node
+    struct node
     {
-        explicit Node(IError *_date)
+        explicit node(IError *_date)
             : date(_date)
         {
         }
 
         IError *date;
-        std::unique_ptr<Node> next = nullptr;
+        std::unique_ptr<node> next = nullptr;
     };
 
 private:
-    int32_t _size = 0;
-    std::unique_ptr<Node> head = nullptr;
+    int _Size = 0;
+    std::unique_ptr<node> first = nullptr;
 };
