@@ -12,7 +12,7 @@ public:
     ~Time() = default;
 
     Time &operator=(const Time &time) = default;
-    bool operator==(const Time &other) const;
+    bool operator==(const Time &other) const = default;
 
     inline int minute() const { return minutes; };
     inline int second() const { return seconds; };
