@@ -1,66 +1,30 @@
+
+#include "Vector.h"
+#include "Time.h"
+
 #include <iostream>
-#include <string>
-
-#include "Store.h"
-
-#include "IError.h"
-#include "IOError.h"
-#include "NotEnoughMemory.h"
-#include "ReadFileError.h"
-#include "WriteFileError.h"
 
 int main()
 {
-    Store container;
+    Vector<int> vectorForInt1;
 
-    IOError io1(IOError::Type::INPUT);
-    IOError io2(IOError::Type::OUTPUT);
+    vectorForInt1.insertVector(4);
+    vectorForInt1.insertVector(66);
+    vectorForInt1.insertVector(12);
 
-    if (io1 == io2)
-    {
-        std::cout << "Errors are same" << std::endl;
-    }
-    else
-    {
-        std::cout << "Errors are different" << std::endl;
-    }
+    std::cout << vectorForInt1;
+    std::cout << "Vector 1 size: " << vectorForInt1() << std::endl;
 
-    container.insert(&io1);
-    container.insert(&io2);
+    auto sumVect = vectorForInt1 * 5;
+    std::cout << *sumVect;
 
-    NotEnoughMemory nem1(NotEnoughMemory::MemoryType::VRAM);
-    NotEnoughMemory nem2(NotEnoughMemory::MemoryType::VRAM);
+    Vector<Time> vectorForTime;
 
-    if (nem1 == nem2)
-    {
-        std::cout << "Memory are same" << std::endl;
-    }
-    else
-    {
-        std::cout << "Memory are different" << std::endl;
-    }
-    nem2 = nem1;
+    vectorForTime.insertVector(Time("12:10:41"));
+    vectorForTime.insertVector(Time("10:50:51"));
+    vectorForTime.insertVector(Time("23:32:50"));
+    vectorForTime.insertVector(Time("11:17:11"));
 
-    container.insert(&nem1);
-    container.insert(&nem2);
-
-    ReadFileError rfe1("CANNOT OPEN FILE");
-    ReadFileError rfe2("CANNOT OPEN FILE");
-
-    if (rfe1 == rfe2)
-    {
-        std::cout << "Errors are same" << std::endl;
-    }
-    else
-    {
-        std::cout << "Erros are different" << std::endl;
-    }
-
-    container.insert(&rfe1);
-    container.insert(&rfe2);
-
-    std::cout << "Amount of erros: " << container.size() << std::endl;
-    container.print();
-
-    container[7]->Print();
+    std::cout << vectorForTime;
+    return 0;
 }
