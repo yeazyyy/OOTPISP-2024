@@ -93,7 +93,7 @@ template <class T>
 void QVector<T>::removeElement(const T &key)
 {
     std::vector<T> vec = toVector();
-    vec.erase(std::ranges::remove(vec.begin(), vec.end(), key), vec.end());
+    std::erase(std::ranges::remove(vec.begin(), vec.end(), key), vec.end());
     fromVector(vec);
 }
 
