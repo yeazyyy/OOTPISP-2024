@@ -49,6 +49,6 @@ IError *Store::operator[](const int i)
     {
         std::cout << e.what() << "\n";
         IError err;
-        return nullptr;
+        return IError();
     }
 }
