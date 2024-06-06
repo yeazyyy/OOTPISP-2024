@@ -1,4 +1,3 @@
-
 # Лабораторная работа №5 #
 
 ## Последовательные контейнеры библиотеки STL ##
@@ -10,8 +9,7 @@
 Использование последовательных контейнеров библиотеки STL в ОО  программе. 
 
 ### Задания для 1-3 ###
-```c++
-
+```
 template <class T>
 void InsertMaxToEnd(std::deque<T> &deq)
 {
@@ -34,11 +32,12 @@ void AddAverageToDeque(std::deque<T> &deq)
     std::ranges::for_each(deq, [avrValue](auto &i)
                           { i = i + avrValue; });
 }
+
 ```
 
 ### Задания для 4-5 ###
 
-```c++
+```
 
 template <typename T>
 void addMaxElement(std::queue<T> &q)
