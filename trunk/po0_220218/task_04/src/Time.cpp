@@ -6,4 +6,3 @@ Time::Time(std::string_view timeString)
     char tokenDelimiter;
     ss >> hours >> tokenDelimiter >> minutes >> tokenDelimiter >> seconds;
 }
-+
