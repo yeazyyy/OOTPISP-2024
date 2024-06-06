@@ -48,7 +48,7 @@ IError *Store::operator[](const int i)
     catch (const std::out_of_range &e)
     {
         std::cout << e.what() << "\n";
-        auto IError err = std::shared_ptr<IError>();
+        auto err = std::shared_ptr<IError>();
         return err.get()
     }
 }
