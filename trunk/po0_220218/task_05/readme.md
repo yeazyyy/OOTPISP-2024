@@ -9,6 +9,7 @@
 Использование последовательных контейнеров библиотеки STL в ОО  программе. 
 
 ### Задания для 1-3 ###
+
 ```
 template <class T>
 void InsertMaxToEnd(std::deque<T> &deq)
