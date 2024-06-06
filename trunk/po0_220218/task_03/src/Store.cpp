@@ -49,6 +49,6 @@ IError *Store::operator[](const int i)
     {
         std::cout << e.what() << "\n";
         auto err = std::shared_ptr<IError>();
-        return err.get()
+        return err.get();
     }
 }
