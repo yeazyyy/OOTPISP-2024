@@ -15,7 +15,6 @@ public:
     ~CTime() = default;
 
     CTime &operator=(const CTime &time) = default;
-    bool operator==(const CTime &other) const;
     auto operator<=>(const CTime &t) const = default;
 
     inline int GetMinute() const { return _mMinutes; };

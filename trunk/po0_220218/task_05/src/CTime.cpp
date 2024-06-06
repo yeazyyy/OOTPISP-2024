@@ -7,11 +7,6 @@ CTime::CTime(std::string_view CTimeString)
     ss >> _mHours >> tokenDelimiter >> _mMinutes >> tokenDelimiter >> _mSeconds;
 }
 
-bool CTime::operator==(const CTime &other) const
-{
-    return ((this->_mHours == other._mHours) && (this->_mMinutes == other._mMinutes) && (this->_mSeconds == other._mSeconds));
-}
-
 CTime CTime::operator+(const CTime &t) const
 {
     CTime result;

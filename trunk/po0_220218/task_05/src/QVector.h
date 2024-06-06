@@ -85,7 +85,7 @@ void QVector<T>::addMaxElement()
         return;
 
     std::vector<T> vec = toVector();
-    T maxElement = *std::max_element(vec.begin(), vec.end());
+    T maxElement = *std::ranges::max_element(vec.begin(), vec.end());
     append(maxElement);
 }
 
@@ -93,7 +93,7 @@ template <class T>
 void QVector<T>::removeElement(const T &key)
 {
     std::vector<T> vec = toVector();
-    vec.erase(std::remove(vec.begin(), vec.end(), key), vec.end());
+    vec.erase(std::ranges::remove(vec.begin(), vec.end(), key), vec.end());
     fromVector(vec);
 }
 

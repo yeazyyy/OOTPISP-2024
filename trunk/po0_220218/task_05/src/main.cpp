@@ -88,7 +88,7 @@ void addAverageToAllElements(std::queue<T> &q)
     }
 
     T sum = std::accumulate(elements.begin(), elements.end(), T{});
-    T average = sum / elements.size();
+    T average = sum / std::static_cast<int>(elements.size());
 
     for (auto &elem : elements)
     {
