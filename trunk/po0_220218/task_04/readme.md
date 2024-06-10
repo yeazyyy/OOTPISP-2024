@@ -30,7 +30,7 @@ void Vector<T>::showVector() const
 }
 ```
 
-### Перегрузка оператора вывода в классе Time###
+### Перегрузка оператора вывода в классе Time ###
 
 ```c++
  friend std::ostream &operator<<(std::ostream &out, const Time &time)
@@ -88,3 +88,14 @@ T Vector<T>::operator[](const int i) const
     return (*arrayForVector)[i];
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
