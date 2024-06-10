@@ -1,79 +1,90 @@
-# Лабораторная работа №2 #
 
-## Правила перегрузки операций и принципы обработки исключений в С++ ##
+# Лабораторная работа №4 #
+
+## Шаблоны классов ##
 
 ## Вариант 4 ##
+ 
 
 ## Цель работы ##
+Создание консольного приложения, состоящего из нескольких файлов в системе  программирования Visual Studio. Реализация шаблона класса-контейнера. 
 
-Изучить правила перегрузки операций и принцивы обработки исключений в С++
-
-### Обработка исключаний для Container \*operator [](const int index) ###
-
+### Перегрузка оператора вывода и фунция Show в классе Vector ###
 ```c++
-    
-IError *Container::operator[](const int index)
+template <class T>
+std::ostream &operator<<(std::ostream &out, const Vector<T> &a)
 {
-    try
+    a.showVector();
+    return out;
+}
+
+template <class T>
+void Vector<T>::showVector() const
+{
+    std::cout << "{ ";
+    for (int i = 0; i < length; ++i)
     {
-        if (index < 0 || index >= _size)
-            throw std::out_of_range("index out of range");
-
-        auto ptr = std::move(head);
-        for (int i = 0; i < index; i++)
-        {
-            ptr = std::move(ptr->next);
-        }
-        return ptr->date;
+        std::cout << (*arrayForVector)[i] << " ";
     }
-    catch (const std::out_of_range &e)
+    std::cout << "}" << std::endl;
+}
+```
+
+### Перегрузка оператора вывода в классе Time###
+
+```c++
+ friend std::ostream &operator<<(std::ostream &out, const Time &time)
     {
-        std::cout << e.what() << std::endl;
-        IError err;
-        return nullptr;
+        out << time.hour() << ":" << time.minute() << ":" << time.second() << " ";
+        return out;
     }
-}
+
+    friend std::istream &operator>>(std::istream &inp, Time &time)
+    {
+        std::cout << "Hours: ";
+        inp >> time.hours;
+        std::cout << "Minutes: ";
+        inp >> time.minutes;
+        std::cout << "Seconds: ";
+        inp >> time.seconds;
+        return inp;
+    }
 ```
 
-## Перегрузка операторов ##
-
-### Class NotEnoughMemory ###
+### Перегрузка оператора * класса Vector ###
 
 ```c++
-bool NotEnoughMemory::operator==(const NotEnoughMemory &right) const
+template <class T>
+auto Vector<T>::operator*(const T value) const
 {
-    return (this->memType == right.memType);
-}
+    auto newVector = std::make_unique<Vector<T>>();
 
-```
+    for (int i = 0; i < length; i++)
+    {
+        newVector->insertVector((*arrayForVector)[i] * value);
+    }
 
-### Class IOError ###
-
-```c++
-bool IOError::operator==(const IOError &right) const
-{
-    return (this->error == right.error);
+    return newVector;
 }
 ```
 
-### Class ReadFileError ###
+### Перегрузка оператора () и функции Size класса Vector для определения размера векторов ###
 
 ```c++
 
-bool ReadFileError::operator==(const ReadFileError &right) const
+template <class T>
+int Vector<T>::operator()() const
 {
-    return (this->errorCode == right.errorCode);
-}
-
+    return vectorLength();
+};
 ```
 
-### Class WriteFileError ###
+### Перегрузка оператора [] класса Vector для обращения к элементу по индексу ###
 
 ```c++
-bool WriteFileError::operator==(const WriteFileError &right) const
+template <class T>
+T Vector<T>::operator[](const int i) const
 {
-    return (this->writeError == right.writeError);
+    return (*arrayForVector)[i];
 }
-
 ```
-
